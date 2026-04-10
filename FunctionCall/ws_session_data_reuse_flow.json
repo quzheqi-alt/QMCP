@@ -1,0 +1,133 @@
+{
+  "description": "WebSocket Session 数据复用完整流程 - 在同一连接内存取数据并验证跨请求复用",
+  "steps": [
+    {
+      "step": 1,
+      "action": "连接 WebSocket",
+      "url": "ws://localhost:3000/ws"
+    },
+    {
+      "step": 2,
+      "action": "初始化",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-03-26",
+          "capabilities": {},
+          "clientInfo": { "name": "store-test", "version": "1.0.0" }
+        }
+      }
+    },
+    {
+      "step": 3,
+      "action": "发送 initialized 通知",
+      "message": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized",
+        "params": {}
+      }
+    },
+    {
+      "step": 4,
+      "action": "存储用户偏好",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/call",
+        "params": {
+          "name": "store_set",
+          "arguments": {
+            "key": "user_profile",
+            "value": "{\"name\":\"野崎\",\"role\":\"developer\",\"lang\":\"zh-CN\"}"
+          }
+        }
+      },
+      "note": "JSON 字符串会被自动解析为对象存储"
+    },
+    {
+      "step": 5,
+      "action": "存储项目配置",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "store_set",
+          "arguments": {
+            "key": "project",
+            "value": "{\"name\":\"QMCP\",\"version\":\"1.0.0\"}"
+          }
+        }
+      }
+    },
+    {
+      "step": 6,
+      "action": "读取用户偏好（验证复用）",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "tools/call",
+        "params": {
+          "name": "store_get",
+          "arguments": { "key": "user_profile" }
+        }
+      },
+      "expect": "返回 step4 存入的完整对象，证明数据在同一 Session 内被复用"
+    },
+    {
+      "step": 7,
+      "action": "列出所有存储数据",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "tools/call",
+        "params": {
+          "name": "store_list",
+          "arguments": {}
+        }
+      },
+      "expect": "返回 user_profile 和 project 两个键的完整数据"
+    },
+    {
+      "step": 8,
+      "action": "发起多轮聊天（验证消息历史复用）",
+      "messages": [
+        {
+          "jsonrpc": "2.0",
+          "id": 6,
+          "method": "tools/call",
+          "params": {
+            "name": "chat",
+            "arguments": { "message": "你好，帮我查一下我的用户名" }
+          }
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 7,
+          "method": "tools/call",
+          "params": {
+            "name": "chat",
+            "arguments": { "message": "我的上一句话说了什么？" }
+          }
+        }
+      ],
+      "expect": "第二条 chat 的返回中包含第一条消息的内容"
+    },
+    {
+      "step": 9,
+      "action": "查看完整 Session 信息",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "tools/call",
+        "params": {
+          "name": "session_info",
+          "arguments": {}
+        }
+      },
+      "expect": "返回中包含 store（user_profile、project）和 messageHistoryCount: 4"
+    }
+  ]
+}

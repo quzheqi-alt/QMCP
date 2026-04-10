@@ -1,0 +1,24 @@
+{
+  "description": "列出 Session 中所有已存储的数据",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 22,
+    "method": "tools/call",
+    "params": {
+      "name": "store_list",
+      "arguments": {}
+    }
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 22,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"username\": \"野崎\",\n  \"config\": { \"theme\": \"dark\" }\n}"
+        }
+      ]
+    }
+  }
+}

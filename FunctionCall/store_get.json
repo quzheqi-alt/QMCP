@@ -1,0 +1,26 @@
+{
+  "description": "从 Session 读取数据 - 读取之前 store_set 存入的值",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 21,
+    "method": "tools/call",
+    "params": {
+      "name": "store_get",
+      "arguments": {
+        "key": "username"
+      }
+    }
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 21,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "\"野崎\""
+        }
+      ]
+    }
+  }
+}

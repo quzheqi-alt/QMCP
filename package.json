@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
+    "better-sqlite3": "^11.7.0",
     "express": "^4.21.0",
     "uuid": "^10.0.0",
     "ws": "^8.18.0"
@@ -17,5 +18,10 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/ws": "^8.5.12"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3"
+    ]
   }
 }

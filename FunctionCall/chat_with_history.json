@@ -1,0 +1,47 @@
+{
+  "description": "带会话记忆的聊天 - 多轮对话自动积累历史，验证 Session 上下文复用",
+  "steps": [
+    {
+      "step": 1,
+      "action": "发送第一条消息",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 30,
+        "method": "tools/call",
+        "params": {
+          "name": "chat",
+          "arguments": { "message": "你好，我叫野崎" }
+        }
+      },
+      "note": "历史中会出现 1 条 user 消息"
+    },
+    {
+      "step": 2,
+      "action": "发送第二条消息",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 31,
+        "method": "tools/call",
+        "params": {
+          "name": "chat",
+          "arguments": { "message": "我刚才说了什么？" }
+        }
+      },
+      "note": "返回中会包含第一条消息的内容，证明上下文被保留"
+    },
+    {
+      "step": 3,
+      "action": "发送第三条消息",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 32,
+        "method": "tools/call",
+        "params": {
+          "name": "chat",
+          "arguments": { "message": "现在历史里有几条消息了？" }
+        }
+      },
+      "note": "历史中应有 5 条记录 (3 user + 2 assistant)，返回中列出完整历史"
+    }
+  ]
+}
