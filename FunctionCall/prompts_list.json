@@ -1,0 +1,25 @@
+{
+  "description": "列出所有提示模板 - 获取服务器注册的全部 prompts",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 9,
+    "method": "prompts/list",
+    "params": {}
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 9,
+    "result": {
+      "prompts": [
+        {
+          "name": "greeting",
+          "description": "生成一段个性化的问候语",
+          "arguments": [
+            { "name": "username", "description": "用户名称", "required": true },
+            { "name": "style", "description": "问候风格: formal/casual", "required": false }
+          ]
+        }
+      ]
+    }
+  }
+}

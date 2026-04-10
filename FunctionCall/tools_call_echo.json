@@ -1,0 +1,26 @@
+{
+  "description": "调用 echo 工具 - 测试工具调用功能，回显消息",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+      "name": "echo",
+      "arguments": {
+        "message": "Hello, MCP Server!"
+      }
+    }
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Echo: Hello, MCP Server!"
+        }
+      ]
+    }
+  }
+}

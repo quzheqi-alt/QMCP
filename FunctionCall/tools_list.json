@@ -1,0 +1,57 @@
+{
+  "description": "列出所有可用工具 - 获取服务器注册的全部 tools",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/list",
+    "params": {}
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "tools": [
+        {
+          "name": "echo",
+          "description": "回显输入的消息内容",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "message": { "type": "string", "description": "要回显的消息" }
+            },
+            "required": ["message"]
+          }
+        },
+        {
+          "name": "get_time",
+          "description": "获取当前服务器时间",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "calculate",
+          "description": "执行基本的数学计算",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "expression": { "type": "string", "description": "数学表达式，如 2+3*4" }
+            },
+            "required": ["expression"]
+          }
+        },
+        {
+          "name": "session_info",
+          "description": "获取当前会话信息",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    }
+  }
+}

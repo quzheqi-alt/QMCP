@@ -1,0 +1,14 @@
+{
+  "description": "Ping 请求 - 检测服务器是否存活",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 11,
+    "method": "ping",
+    "params": {}
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 11,
+    "result": {}
+  }
+}

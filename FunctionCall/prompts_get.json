@@ -1,0 +1,31 @@
+{
+  "description": "获取提示模板详情 - 生成个性化问候语",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 10,
+    "method": "prompts/get",
+    "params": {
+      "name": "greeting",
+      "arguments": {
+        "username": "野崎",
+        "style": "casual"
+      }
+    }
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 10,
+    "result": {
+      "description": "为 野崎 生成的 casual 风格问候语",
+      "messages": [
+        {
+          "role": "user",
+          "content": {
+            "type": "text",
+            "text": "请用轻松愉快的语气向 野崎 问好"
+          }
+        }
+      ]
+    }
+  }
+}

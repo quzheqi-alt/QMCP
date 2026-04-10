@@ -1,0 +1,24 @@
+{
+  "description": "调用 get_time 工具 - 获取服务器当前时间",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 5,
+    "method": "tools/call",
+    "params": {
+      "name": "get_time",
+      "arguments": {}
+    }
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 5,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "当前时间: 2026-04-10T17:10:00.000+08:00"
+        }
+      ]
+    }
+  }
+}

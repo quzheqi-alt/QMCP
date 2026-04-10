@@ -1,0 +1,26 @@
+{
+  "description": "调用 calculate 工具 - 测试数学计算功能",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "method": "tools/call",
+    "params": {
+      "name": "calculate",
+      "arguments": {
+        "expression": "2 + 3 * 4"
+      }
+    }
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "计算结果: 2 + 3 * 4 = 14"
+        }
+      ]
+    }
+  }
+}

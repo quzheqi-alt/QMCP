@@ -1,0 +1,9 @@
+{
+  "description": "初始化完成通知 - 客户端在收到 initialize 响应后发送此通知",
+  "request": {
+    "jsonrpc": "2.0",
+    "method": "notifications/initialized",
+    "params": {}
+  },
+  "expectedResponse": "无响应 (HTTP 204 / WebSocket 无回复)"
+}

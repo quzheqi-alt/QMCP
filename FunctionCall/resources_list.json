@@ -1,0 +1,23 @@
+{
+  "description": "列出所有可用资源 - 获取服务器注册的全部 resources",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 7,
+    "method": "resources/list",
+    "params": {}
+  },
+  "expectedResponse": {
+    "jsonrpc": "2.0",
+    "id": 7,
+    "result": {
+      "resources": [
+        {
+          "uri": "info://server-status",
+          "name": "server-status",
+          "description": "获取服务器运行状态信息",
+          "mimeType": "application/json"
+        }
+      ]
+    }
+  }
+}

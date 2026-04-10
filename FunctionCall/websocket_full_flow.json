@@ -1,0 +1,83 @@
+{
+  "description": "WebSocket 完整交互流程 - 从连接到调用工具的完整测试步骤",
+  "steps": [
+    {
+      "step": 1,
+      "action": "连接 WebSocket",
+      "url": "ws://localhost:3000/ws",
+      "note": "连接后会收到 welcome 通知"
+    },
+    {
+      "step": 2,
+      "action": "发送 initialize 请求",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-03-26",
+          "capabilities": {},
+          "clientInfo": { "name": "ws-test-client", "version": "1.0.0" }
+        }
+      }
+    },
+    {
+      "step": 3,
+      "action": "发送 initialized 通知",
+      "message": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized",
+        "params": {}
+      }
+    },
+    {
+      "step": 4,
+      "action": "列出工具",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/list",
+        "params": {}
+      }
+    },
+    {
+      "step": 5,
+      "action": "调用 echo 工具",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "echo",
+          "arguments": { "message": "WebSocket 测试消息" }
+        }
+      }
+    },
+    {
+      "step": 6,
+      "action": "调用 calculate 工具",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "tools/call",
+        "params": {
+          "name": "calculate",
+          "arguments": { "expression": "(10 + 20) * 3" }
+        }
+      }
+    },
+    {
+      "step": 7,
+      "action": "获取 Session 信息",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "tools/call",
+        "params": {
+          "name": "session_info",
+          "arguments": {}
+        }
+      }
+    }
+  ]
+}
